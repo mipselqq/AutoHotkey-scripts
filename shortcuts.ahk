@@ -16,10 +16,20 @@
 !+r:: Reload()
 !w:: OpenRegularBrowserTab()
 
+VPN_BUTTON_X := 200
+VPN_BUTTON_Y := 168
+VPN_PROCESS_NAME := "AmneziaVPNZ"
+
 ToggleVpn() {
+    CoordMode('Pixel')
+    CoordMode("Mouse", "Screen")
+    MouseGetPos(&prevMouseX, &prevMouseY)
     RunApp "C:\Program Files\AmneziaVPN\AmneziaVPN.exe"
+    CoordMode("Mouse", "Client")
     WinWaitActive("AmneziaVPN")
-    MouseClick("L", 200, 168)
+    MouseClick("L", VPN_BUTTON_X, VPN_BUTTON_Y)
+    CoordMode("Mouse", "Screen")
+    MouseMove(prevMouseX, prevMouseY)
     CloseActiveWindow()
 }
 
