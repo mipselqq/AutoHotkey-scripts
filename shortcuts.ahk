@@ -8,12 +8,20 @@
 !0:: SetActiveWindowPriority "High"
 !9:: SetActiveWindowPriority "Normal"
 !8:: SetActiveWindowPriority "Low"
-!v:: RunApp "C:\Program Files\AmneziaVPN\AmneziaVPN.exe"
+!v:: ToggleVpn
 !m:: RunApp "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
+; TODO: support wildcards
 !d:: RunApp "C:\Program Files\WindowsApps\TelegramMessengerLLP.TelegramDesktop_5.8.3.0_x64__t4vj0pshhgkwm\Telegram.exe"
 !c:: Run "powershell"
 !+r:: Reload()
 !w:: OpenRegularBrowserTab()
+
+ToggleVpn() {
+    RunApp "C:\Program Files\AmneziaVPN\AmneziaVPN.exe"
+    WinWaitActive("AmneziaVPN")
+    MouseClick("L", 200, 168)
+    CloseActiveWindow()
+}
 
 MinimizeActiveWindow() {
     WinMinimize("A")
