@@ -21,7 +21,19 @@ TerminateActiveWindow() {
 }
 
 CloseActiveWindow() {
-    Send "!{f4}"
+    processName := WinGetProcessName("A")
+
+    if (processName = "chrome.exe" || processName = "firefox.exe") {
+        CloseBrowserTab()
+    } else if (processName = "Яндекс Музыка.exe") {
+        WinHide("A")
+    } else {
+        WinClose("A")
+    }
+}
+
+CloseBrowserTab() {
+    Send "^{w}"
 }
 
 Sleep() {
