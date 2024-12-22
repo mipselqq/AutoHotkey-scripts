@@ -7,6 +7,10 @@
 !0:: SetActiveWindowPriority "High"
 !9:: SetActiveWindowPriority "Normal"
 !8:: SetActiveWindowPriority "Low"
+!v:: RunApp "C:\Program Files\AmneziaVPN\AmneziaVPN.exe"
+!m:: RunApp "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
+!c:: Run "powershell"
+!+r:: Reload()
 
 TerminateActiveWindow() {
     try {
@@ -48,4 +52,12 @@ SetActiveWindowPriority(priority) {
 
 GetActiveWindowPid() {
     return WinGetPID(WinGetID("A"))
+}
+
+RunApp(path) {
+    try {
+        Run(path)
+    } catch {
+        MsgBox("ERROR: Failed to run " path ".")
+    }
 }
