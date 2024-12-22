@@ -12,6 +12,7 @@
 !m:: RunApp "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
 !c:: Run "powershell"
 !+r:: Reload()
+!w:: OpenRegularBrowserTab()
 
 MinimizeActiveWindow() {
     WinMinimize("A")
@@ -39,6 +40,10 @@ CloseActiveWindow() {
 
 CloseBrowserTab() {
     Send "^{w}"
+}
+
+OpenRegularBrowserTab() {
+    Send "^{t}"
 }
 
 Sleep() {
