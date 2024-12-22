@@ -25,16 +25,40 @@ TELEGRAM_APP_PATH :=
 MUSIC_APP_PATH := "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
 
 ToggleVpn() {
-    CoordMode("Pixel")
+    ShowVpnStatus()
+
     RunApp("C:\Program Files\AmneziaVPN\AmneziaVPN.exe")
     WinWaitActive("AmneziaVPN")
+
     CoordMode("Mouse", "Screen")
     MouseGetPos(&prevMouseX, &prevMouseY)
+
     CoordMode("Mouse", "Client")
     MouseClick("L", VPN_BUTTON_X, VPN_BUTTON_Y)
+
     CoordMode("Mouse", "Screen")
     MouseMove(prevMouseX, prevMouseY)
     CloseActiveWindow()
+
+    HideVpnStatus()
+}
+
+global isVpnOn := false
+ShowVpnStatus() {
+    global isVpnOn
+
+    CoordMode("Mouse", "Screen")
+    if isVpnOn {
+        ToolTip("On", A_ScreenWidth / 2, A_ScreenHeight)
+        isVpnOn := false
+    } else {
+        ToolTip("Off", A_ScreenWidth / 2, A_ScreenHeight)
+        isVpnOn := true
+    }
+}
+
+HideVpnStatus() {
+    ToolTip("")
 }
 
 MinimizeActiveWindow() {
