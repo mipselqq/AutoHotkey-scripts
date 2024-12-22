@@ -3,13 +3,14 @@
 !+q:: TerminateActiveWindow
 !q:: CloseActiveWindow
 !a:: MinimizeActiveWindow
-!+s::Sleep
-!+p:: Shutdown
+!+s:: SleepPc
+!+p:: ShutdownPc
 !0:: SetActiveWindowPriority "High"
 !9:: SetActiveWindowPriority "Normal"
 !8:: SetActiveWindowPriority "Low"
 !v:: RunApp "C:\Program Files\AmneziaVPN\AmneziaVPN.exe"
 !m:: RunApp "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
+!d:: RunApp "C:\Program Files\WindowsApps\TelegramMessengerLLP.TelegramDesktop_5.8.3.0_x64__t4vj0pshhgkwm\Telegram.exe"
 !c:: Run "powershell"
 !+r:: Reload()
 !w:: OpenRegularBrowserTab()
@@ -46,7 +47,7 @@ OpenRegularBrowserTab() {
     Send "^{t}"
 }
 
-Sleep() {
+SleepPc() {
     try {
         DllCall("PowrProf\SetSuspendState", "Int", 0, "Int", 0, "Int", 0)
     } catch {
@@ -54,7 +55,7 @@ Sleep() {
     }
 }
 
-Shutdown() {
+ShutdownPc() {
     try {
         Run("shutdown /s /f /t 0")
     } catch {
