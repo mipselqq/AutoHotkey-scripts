@@ -1,5 +1,3 @@
-# AutoHotkey Script - Hotkeys and Actions
-
 Made for myself, this script utilizes AutoHotkey v2.0 and provides a set of useful shortcuts for managing windows, processes, and running applications.
 
 ## Shortcut List
@@ -7,7 +5,7 @@ Made for myself, this script utilizes AutoHotkey v2.0 and provides a set of usef
 - **Alt + Shift + Q**: Terminates the active window's process.
 - **Alt + Q**: Closes the active window or browser tab.
 - **Alt + A**: Minimizes the active window.
-- **Alt + V**: Toggle **AmneziaVPN**.
+- **Alt + V**: Toggles **AmneziaVPN**.
 - **Alt + M**: Runs **Yandex Music**.
 - **Alt + M**: Runs **Yandex Music**.
 - **Alt + D**: Opens **Telegram Desktop**.
