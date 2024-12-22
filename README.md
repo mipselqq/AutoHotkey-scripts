@@ -7,10 +7,11 @@ Made for myself, this script utilizes AutoHotkey v2.0 and provides a set of usef
 - **Alt + Shift + Q**: Terminates the active window's process.
 - **Alt + Q**: Closes the active window or browser tab.
 - **Alt + A**: Minimizes the active window.
-- **Alt + V**: Runs the **AmneziaVPN**.
+- **Alt + V**: Toggle **AmneziaVPN**.
 - **Alt + M**: Runs **Yandex Music**.
 - **Alt + M**: Runs **Yandex Music**.
 - **Alt + D**: Opens **Telegram Desktop**.
+- **Alt + B**: Opens **Chrome**.
 - **Alt + W**: Opens regular browser tab.
 - **Alt + 0**: Sets the active window's priority to **High**.
 - **Alt + 9**: Sets the active window's priority to **Normal**.
