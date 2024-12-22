@@ -9,24 +9,28 @@
 !9:: SetActiveWindowPriority "Normal"
 !8:: SetActiveWindowPriority "Low"
 !v:: ToggleVpn
-!m:: RunApp "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
+!m:: RunApp MUSIC_APP_PATH
 ; TODO: support wildcards
-!d:: RunApp "C:\Program Files\WindowsApps\TelegramMessengerLLP.TelegramDesktop_5.8.3.0_x64__t4vj0pshhgkwm\Telegram.exe"
+!d:: RunApp TELEGRAM_APP_PATH
 !c:: Run "powershell"
 !+r:: Reload()
 !w:: OpenRegularBrowserTab()
 
 VPN_BUTTON_X := 200
 VPN_BUTTON_Y := 168
-VPN_PROCESS_NAME := "AmneziaVPNZ"
+VPN_WINDOW_NAME := "AmneziaVPNZ"
+
+TELEGRAM_APP_PATH :=
+    "C:\Program Files\WindowsApps\TelegramMessengerLLP.TelegramDesktop_5.8.3.0_x64__t4vj0pshhgkwm\Telegram.exe"
+MUSIC_APP_PATH := "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
 
 ToggleVpn() {
-    CoordMode('Pixel')
+    CoordMode("Pixel")
+    RunApp("C:\Program Files\AmneziaVPN\AmneziaVPN.exe")
+    WinWaitActive("AmneziaVPN")
     CoordMode("Mouse", "Screen")
     MouseGetPos(&prevMouseX, &prevMouseY)
-    RunApp "C:\Program Files\AmneziaVPN\AmneziaVPN.exe"
     CoordMode("Mouse", "Client")
-    WinWaitActive("AmneziaVPN")
     MouseClick("L", VPN_BUTTON_X, VPN_BUTTON_Y)
     CoordMode("Mouse", "Screen")
     MouseMove(prevMouseX, prevMouseY)
@@ -95,9 +99,9 @@ GetActiveWindowPid() {
     return WinGetPID(WinGetID("A"))
 }
 
-RunApp(path) {
+RunApp(path, &pid := unset) {
     try {
-        Run(path)
+        Run(path, unset, unset, &pid)
     } catch {
         MsgBox("ERROR: Failed to run " path ".")
     }
