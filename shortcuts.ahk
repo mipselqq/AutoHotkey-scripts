@@ -1,20 +1,23 @@
 ﻿#Requires AutoHotkey v2.0
 
-!+q:: TerminateActiveWindow
-!q:: CloseActiveWindow
-!a:: MinimizeActiveWindow
-!+s:: SleepPc
-!+p:: ShutdownPc
-!0:: SetActiveWindowPriority "High"
-!9:: SetActiveWindowPriority "Normal"
-!8:: SetActiveWindowPriority "Low"
-!v:: ToggleVpn
-!m:: RunApp MUSIC_APP_PATH
-; TODO: support wildcards
-!d:: RunApp TELEGRAM_APP_PATH
-!c:: Run "powershell"
-!+r:: Reload()
-!w:: OpenRegularBrowserTab()
+try {
+    !+q:: TerminateActiveWindow
+    !q:: CloseActiveWindow
+    !a:: MinimizeActiveWindow
+    !+s:: SleepPc
+    !+p:: ShutdownPc
+    !0:: SetActiveWindowPriority "High"
+    !9:: SetActiveWindowPriority "Normal"
+    !8:: SetActiveWindowPriority "Low"
+    !v:: ToggleVpn
+    !m:: Run MUSIC_APP_PATH
+    ; TODO: support wildcards
+    !d:: Run TELEGRAM_APP_PATH
+    !c:: Run "powershell"
+    !+r:: Reload()
+    !w:: OpenRegularBrowserTab()
+} catch {
+}
 
 VPN_BUTTON_X := 200
 VPN_BUTTON_Y := 168
@@ -27,7 +30,7 @@ MUSIC_APP_PATH := "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндек�
 ToggleVpn() {
     ShowVpnStatus()
 
-    RunApp("C:\Program Files\AmneziaVPN\AmneziaVPN.exe")
+    Run("C:\Program Files\AmneziaVPN\AmneziaVPN.exe")
     WinWaitActive("AmneziaVPN")
 
     CoordMode("Mouse", "Screen")
@@ -66,11 +69,7 @@ MinimizeActiveWindow() {
 }
 
 TerminateActiveWindow() {
-    try {
-        ProcessClose(GetActiveWindowPid())
-    } catch {
-        MsgBox("ERROR: Failed to terminate the process of the active window.")
-    }
+    ProcessClose(GetActiveWindowPid())
 }
 
 CloseActiveWindow() {
@@ -94,39 +93,17 @@ OpenRegularBrowserTab() {
 }
 
 SleepPc() {
-    try {
-        DllCall("PowrProf\SetSuspendState", "Int", 0, "Int", 0, "Int", 0)
-    } catch {
-        MsgBox("ERROR: Failed to put the computer to sleep.")
-    }
+    DllCall("PowrProf\SetSuspendState", "Int", 0, "Int", 0, "Int", 0)
 }
 
 ShutdownPc() {
-    try {
-        Run("shutdown /s /f /t 0")
-    } catch {
-        MsgBox("ERROR: Failed to shut down the computer.")
-    }
+    Run("shutdown /s /f /t 0")
 }
 
 SetActiveWindowPriority(priority) {
-    try {
-        if !ProcessSetPriority(priority, GetActiveWindowPid()) {
-            MsgBox("ERROR: Failed to set process priority to " priority ".")
-        }
-    } catch {
-        MsgBox("ERROR: Failed to set process priority to " priority ".")
-    }
+    ProcessSetPriority(priority, GetActiveWindowPid())
 }
 
 GetActiveWindowPid() {
     return WinGetPID(WinGetID("A"))
-}
-
-RunApp(path, &pid := unset) {
-    try {
-        Run(path, unset, unset, &pid)
-    } catch {
-        MsgBox("ERROR: Failed to run " path ".")
-    }
 }
