@@ -10,7 +10,7 @@ Made for myself, this script utilizes AutoHotkey v2.0 and provides a set of usef
 - **Alt + V**: Runs the **AmneziaVPN** application.
 - **Alt + M**: Runs **Yandex Music** application.
 - **Alt + C**: Opens **PowerShell**.
-- **Alt + T**: Opens regular browser tab.
+- **Alt + W**: Opens regular browser tab.
 - **Alt + 0**: Sets the active window's priority to **High**.
 - **Alt + 9**: Sets the active window's priority to **Normal**.
 - **Alt + 8**: Sets the active window's priority to **Low**.
