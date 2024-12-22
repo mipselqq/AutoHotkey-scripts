@@ -2,6 +2,7 @@
 
 !+q:: TerminateActiveWindow
 !q:: CloseActiveWindow
+!a:: MinimizeActiveWindow
 !+s::Sleep
 !+p:: Shutdown
 !0:: SetActiveWindowPriority "High"
@@ -11,6 +12,10 @@
 !m:: RunApp "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
 !c:: Run "powershell"
 !+r:: Reload()
+
+MinimizeActiveWindow() {
+    WinMinimize("A")
+}
 
 TerminateActiveWindow() {
     try {
