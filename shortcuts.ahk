@@ -12,7 +12,6 @@ try {
     !v:: ToggleVpn
     !m:: Run MUSIC_APP_PATH
     ; TODO: support wildcards
-    !d:: Run TELEGRAM_APP_PATH
     !b:: Run BROWSER_APP_PATH
     !c:: Run "powershell"
     !+r:: Reload()
@@ -24,8 +23,6 @@ VPN_BUTTON_X := 200
 VPN_BUTTON_Y := 168
 VPN_WINDOW_NAME := "AmneziaVPNZ"
 
-TELEGRAM_APP_PATH :=
-    "C:\Program Files\WindowsApps\TelegramMessengerLLP.TelegramDesktop_5.8.3.0_x64__t4vj0pshhgkwm\Telegram.exe"
 MUSIC_APP_PATH := "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
 BROWSER_APP_PATH := "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
