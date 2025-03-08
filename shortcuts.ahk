@@ -4,6 +4,7 @@ try {
     !+q:: TerminateActiveWindow
     !q:: CloseActiveWindow
     !a:: MinimizeActiveWindow
+    !d:: MaximizeActiveWindow
     !+s:: SleepPc
     !+p:: ShutdownPc
     !b:: Run BROWSER_APP_PATH
@@ -21,6 +22,10 @@ BROWSER_APP_PATH := "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 MinimizeActiveWindow() {
     WinMinimize("A")
+}
+
+MaximizeActiveWindow() {
+    WinMaximize("A")
 }
 
 TerminateActiveWindow() {
