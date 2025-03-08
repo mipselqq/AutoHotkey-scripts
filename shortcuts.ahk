@@ -6,12 +6,6 @@ try {
     !a:: MinimizeActiveWindow
     !+s:: SleepPc
     !+p:: ShutdownPc
-    !0:: SetActiveWindowPriority "High"
-    !9:: SetActiveWindowPriority "Normal"
-    !8:: SetActiveWindowPriority "Low"
-    !v:: ToggleVpn
-    !m:: Run MUSIC_APP_PATH
-    ; TODO: support wildcards
     !b:: Run BROWSER_APP_PATH
     !c:: Run "powershell"
     !+r:: Reload()
@@ -23,45 +17,7 @@ VPN_BUTTON_X := 200
 VPN_BUTTON_Y := 168
 VPN_WINDOW_NAME := "AmneziaVPNZ"
 
-MUSIC_APP_PATH := "C:\Users\mipse\AppData\Local\Programs\YandexMusic\Яндекс Музыка.exe"
 BROWSER_APP_PATH := "C:\Program Files\Google\Chrome\Application\chrome.exe"
-
-ToggleVpn() {
-    ShowVpnStatus()
-
-    Run("C:\Program Files\AmneziaVPN\AmneziaVPN.exe")
-    WinWaitActive("AmneziaVPN")
-
-    CoordMode("Mouse", "Screen")
-    MouseGetPos(&prevMouseX, &prevMouseY)
-
-    CoordMode("Mouse", "Client")
-    MouseClick("L", VPN_BUTTON_X, VPN_BUTTON_Y)
-
-    CoordMode("Mouse", "Screen")
-    MouseMove(prevMouseX, prevMouseY)
-    CloseActiveWindow()
-
-    HideVpnStatus()
-}
-
-global isVpnOn := false
-ShowVpnStatus() {
-    global isVpnOn
-
-    CoordMode("Mouse", "Screen")
-    if isVpnOn {
-        ToolTip("On", A_ScreenWidth / 2, A_ScreenHeight)
-        isVpnOn := false
-    } else {
-        ToolTip("Off", A_ScreenWidth / 2, A_ScreenHeight)
-        isVpnOn := true
-    }
-}
-
-HideVpnStatus() {
-    ToolTip("")
-}
 
 MinimizeActiveWindow() {
     WinMinimize("A")
@@ -76,8 +32,6 @@ CloseActiveWindow() {
 
     if (processName = "chrome.exe" || processName = "firefox.exe") {
         CloseBrowserTab()
-    } else if (processName = "Яндекс Музыка.exe") {
-        WinHide("A")
     } else {
         WinClose("A")
     }
