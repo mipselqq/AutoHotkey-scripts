@@ -11,14 +11,27 @@ try {
     !c:: Run "powershell"
     !+r:: Reload()
     !w:: OpenRegularBrowserTab()
+    !x:: GoNextBrowserTab()
+    !z:: GoPrevBrowserTab()
 } catch {
 }
 
 VPN_BUTTON_X := 200
 VPN_BUTTON_Y := 168
 VPN_WINDOW_NAME := "AmneziaVPNZ"
-
 BROWSER_APP_PATH := "C:\Program Files\Google\Chrome\Application\chrome.exe"
+
+GoNextBrowserTab() {
+    if (CheckIsBrowserActive) {
+        Send("^{tab}")
+    }
+}
+
+GoPrevBrowserTab() {
+    if (CheckIsBrowserActive) {
+        Send("+^{tab}")
+    }
+}
 
 MinimizeActiveWindow() {
     WinMinimize("A")
@@ -33,9 +46,7 @@ TerminateActiveWindow() {
 }
 
 CloseActiveWindow() {
-    processName := WinGetProcessName("A")
-
-    if (processName = "chrome.exe" || processName = "firefox.exe") {
+    if (CheckIsBrowserActive()) {
         CloseBrowserTab()
     } else {
         WinClose("A")
@@ -64,4 +75,10 @@ SetActiveWindowPriority(priority) {
 
 GetActiveWindowPid() {
     return WinGetPID(WinGetID("A"))
+}
+
+CheckIsBrowserActive() {
+    processName := WinGetProcessName("A")
+
+    return processName = "chrome.exe" || processName = "firefox.exe"
 }
