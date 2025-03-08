@@ -9,3 +9,5 @@ Shortcuts:
 !c:: Run "powershell"
 !+r:: Reload()
 !w:: OpenRegularBrowserTab()
+!x:: GoNextBrowserTab()
+!z:: GoPrevBrowserTab()
