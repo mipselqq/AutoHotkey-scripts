@@ -1,5 +1,5 @@
 Shortcuts:
-```!+q:: TerminateActiveWindow
+!+q:: TerminateActiveWindow
 !q:: CloseActiveWindow
 !a:: MinimizeActiveWindow
 !d:: MaximizeActiveWindow
@@ -9,4 +9,3 @@ Shortcuts:
 !c:: Run "powershell"
 !+r:: Reload()
 !w:: OpenRegularBrowserTab()
-```
