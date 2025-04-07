@@ -5,7 +5,7 @@ Shortcuts:
 !d:: MaximizeActiveWindow
 !+s:: SleepPc
 !+p:: ShutdownPc
-!+r:: Reload()
-!w:: OpenRegularBrowserTab()
-!x:: GoNextBrowserTab()
-!z:: GoPrevBrowserTab()
+!+r:: ReloadYourself
+!w:: OpenRegularBrowserTab
+!x:: GoNextBrowserTab
+!z:: GoPrevBrowserTab
