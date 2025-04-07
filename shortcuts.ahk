@@ -7,8 +7,6 @@ try {
     !d:: MaximizeActiveWindow
     !+s:: SleepPc
     !+p:: ShutdownPc
-    !b:: Run BROWSER_APP_PATH
-    !c:: Run "powershell"
     !+r:: Reload()
     !w:: OpenRegularBrowserTab()
     !x:: GoNextBrowserTab()
@@ -16,19 +14,14 @@ try {
 } catch {
 }
 
-VPN_BUTTON_X := 200
-VPN_BUTTON_Y := 168
-VPN_WINDOW_NAME := "AmneziaVPNZ"
-BROWSER_APP_PATH := "C:\Program Files\Google\Chrome\Application\chrome.exe"
-
 GoNextBrowserTab() {
-    if (CheckIsBrowserActive) {
+    if (CheckIsBrowserActive()) {
         Send("^{tab}")
     }
 }
 
 GoPrevBrowserTab() {
-    if (CheckIsBrowserActive) {
+    if (CheckIsBrowserActive()) {
         Send("+^{tab}")
     }
 }
@@ -67,10 +60,6 @@ SleepPc() {
 
 ShutdownPc() {
     Run("shutdown /s /f /t 0")
-}
-
-SetActiveWindowPriority(priority) {
-    ProcessSetPriority(priority, GetActiveWindowPid())
 }
 
 GetActiveWindowPid() {
