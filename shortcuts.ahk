@@ -1,48 +1,57 @@
 ﻿#Requires AutoHotkey v2.0
 
-try {
-    !+q:: TerminateActiveWindow
-    !q:: CloseActiveWindow
-    !a:: MinimizeActiveWindow
-    !d:: MaximizeActiveWindow
-    !+s:: SleepPc
-    !+p:: ShutdownPc
-    !+r:: Reload()
-    !w:: OpenRegularBrowserTab()
-    !x:: GoNextBrowserTab()
-    !z:: GoPrevBrowserTab()
-} catch {
-}
+!+q:: TerminateActiveWindow
+!q:: CloseActiveWindow
+!a:: MinimizeActiveWindow
+!d:: MaximizeActiveWindow
+!+s:: SleepPc
+!+p:: ShutdownPc
+!+r:: Reload()
+!w:: OpenRegularBrowserTab()
+!x:: GoNextBrowserTab()
+!z:: GoPrevBrowserTab()
 
 GoNextBrowserTab() {
-    if (CheckIsBrowserActive()) {
-        Send("^{tab}")
+    try {
+        if (CheckIsBrowserActive()) {
+            Send("^{tab}")
+        }
     }
 }
 
 GoPrevBrowserTab() {
-    if (CheckIsBrowserActive()) {
-        Send("+^{tab}")
+    try {
+        if (CheckIsBrowserActive()) {
+            Send("+^{tab}")
+        }
     }
 }
 
 MinimizeActiveWindow() {
-    WinMinimize("A")
+    try {
+        WinMinimize("A")
+    }
 }
 
 MaximizeActiveWindow() {
-    WinMaximize("A")
+    try {
+        WinMaximize("A")
+    }
 }
 
 TerminateActiveWindow() {
-    ProcessClose(GetActiveWindowPid())
+    try {
+        ProcessClose(GetActiveWindowPid())
+    }
 }
 
 CloseActiveWindow() {
-    if (CheckIsBrowserActive()) {
-        CloseBrowserTab()
-    } else {
-        WinClose("A")
+    try {
+        if (CheckIsBrowserActive()) {
+            CloseBrowserTab()
+        } else {
+            WinClose("A")
+        }
     }
 }
 
@@ -55,19 +64,27 @@ OpenRegularBrowserTab() {
 }
 
 SleepPc() {
-    DllCall("PowrProf\SetSuspendState", "Int", 0, "Int", 0, "Int", 0)
+    try {
+        DllCall("PowrProf\SetSuspendState", "Int", 0, "Int", 0, "Int", 0)
+    }
 }
 
 ShutdownPc() {
-    Run("shutdown /s /f /t 0")
+    try {
+        Run("shutdown /s /f /t 0")
+    }
 }
 
 GetActiveWindowPid() {
-    return WinGetPID(WinGetID("A"))
+    try {
+        return WinGetPID(WinGetID("A"))
+    }
 }
 
 CheckIsBrowserActive() {
-    processName := WinGetProcessName("A")
+    try {
+        processName := WinGetProcessName("A")
 
-    return processName = "chrome.exe" || processName = "firefox.exe"
+        return processName = "chrome.exe" || processName = "firefox.exe"
+    }
 }
