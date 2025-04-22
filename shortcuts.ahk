@@ -1,5 +1,8 @@
 ﻿#Requires AutoHotkey v2.0
 
+SendMode("Input")
+SetCapsLockState("AlwaysOff")
+
 !+q:: TerminateActiveWindow
 !q:: CloseActiveWindow
 !a:: MinimizeActiveWindow
@@ -10,8 +13,13 @@
 !w:: OpenRegularBrowserTab
 !x:: GoNextBrowserTab
 !z:: GoPrevBrowserTab
+CapsLock:: SwitchLayout
 
 ReloadYourself := Reload
+
+SwitchLayout() {
+    Send "{Alt Down}{Shift Down}{Shift Up}{Alt Up}"
+}
 
 GoNextBrowserTab() {
     try {

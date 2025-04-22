@@ -9,3 +9,4 @@ Shortcuts:
 !w:: OpenRegularBrowserTab
 !x:: GoNextBrowserTab
 !z:: GoPrevBrowserTab
+CapsLock:: SwitchLayout
