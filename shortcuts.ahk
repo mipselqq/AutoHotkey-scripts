@@ -1,92 +1,25 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
+#SingleInstance Force
 
-!+q:: TerminateActiveWindow
-!q:: CloseActiveWindow
-!a:: MinimizeActiveWindow
-!d:: MaximizeActiveWindow
-!+s:: SleepPc
-!+p:: ShutdownPc
-!+r:: ReloadYourself
-!w:: OpenRegularBrowserTab
-!x:: GoNextBrowserTab
-!z:: GoPrevBrowserTab
+^!+p:: Shutdown(9)
+^!+o:: DllCall("PowrProf\SetSuspendState", "Int", 0, "Int", 0, "Int", 0)
+^!+i:: Shutdown(2)
+!+c:: Reload()
+!a:: WinMinimize("A")
 
-ReloadYourself := Reload
-
-GoNextBrowserTab() {
-    try {
-        if (CheckIsBrowserActive()) {
-            Send("^{tab}")
-        }
+!q::
+{
+    if WinActive("A")
+        WinClose("A")
+}
+!+q::
+{
+    try
+    {
+        if WinGetProcessName("A") != "explorer.exe"
+            ProcessClose(WinGetPID("A"))
     }
 }
 
-GoPrevBrowserTab() {
-    try {
-        if (CheckIsBrowserActive()) {
-            Send("+^{tab}")
-        }
-    }
-}
-
-MinimizeActiveWindow() {
-    try {
-        WinMinimize("A")
-    }
-}
-
-MaximizeActiveWindow() {
-    try {
-        WinMaximize("A")
-    }
-}
-
-TerminateActiveWindow() {
-    try {
-        ProcessClose(GetActiveWindowPid())
-    }
-}
-
-CloseActiveWindow() {
-    try {
-        if (CheckIsBrowserActive()) {
-            CloseBrowserTab()
-        } else {
-            WinClose("A")
-        }
-    }
-}
-
-CloseBrowserTab() {
-    Send "^{w}"
-}
-
-OpenRegularBrowserTab() {
-    Send "^{t}"
-}
-
-SleepPc() {
-    try {
-        DllCall("PowrProf\SetSuspendState", "Int", 0, "Int", 0, "Int", 0)
-    }
-}
-
-ShutdownPc() {
-    try {
-        Run("shutdown /s /f /t 0")
-    }
-}
-
-GetActiveWindowPid() {
-    try {
-        return WinGetPID(WinGetID("A"))
-    }
-}
-
-CheckIsBrowserActive() {
-    try {
-        processName := WinGetProcessName("A")
-
-        return processName = "chrome.exe" || processName = "firefox.exe"
-    }
-}
+~Volume_Up:: SoundSetVolume("+2")
+~Volume_Down:: SoundSetVolume("-2")
